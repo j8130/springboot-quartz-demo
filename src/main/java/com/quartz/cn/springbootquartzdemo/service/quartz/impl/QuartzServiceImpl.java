@@ -1,21 +1,26 @@
 package com.quartz.cn.springbootquartzdemo.service.quartz.impl;
 
-
 import com.quartz.cn.springbootquartzdemo.bean.QuartzTaskErrors;
 import com.quartz.cn.springbootquartzdemo.bean.QuartzTaskInformations;
 import com.quartz.cn.springbootquartzdemo.bean.QuartzTaskRecords;
 import com.quartz.cn.springbootquartzdemo.job.QuartzMainJobFactory;
 import com.quartz.cn.springbootquartzdemo.service.quartz.QuartzService;
-import com.quartz.cn.springbootquartzdemo.service.quartz.QuartzTaskErrorsService;
-import com.quartz.cn.springbootquartzdemo.service.quartz.QuartzTaskInformationsService;
-import com.quartz.cn.springbootquartzdemo.service.quartz.QuartzTaskRecordsService;
 import com.quartz.cn.springbootquartzdemo.util.CommonUtil;
 import com.quartz.cn.springbootquartzdemo.util.HttpClientUtil;
 import com.quartz.cn.springbootquartzdemo.util.ResultEnum;
 import com.quartz.cn.springbootquartzdemo.util.ResultUtil;
 import com.quartz.cn.springbootquartzdemo.vo.QuartzTaskRecordsVo;
 import org.apache.commons.collections.CollectionUtils;
-import org.quartz.*;
+import org.quartz.CronScheduleBuilder;
+import org.quartz.CronTrigger;
+import org.quartz.JobBuilder;
+import org.quartz.JobDataMap;
+import org.quartz.JobDetail;
+import org.quartz.JobKey;
+import org.quartz.Scheduler;
+import org.quartz.SchedulerException;
+import org.quartz.TriggerBuilder;
+import org.quartz.TriggerKey;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
@@ -49,13 +54,13 @@ public class QuartzServiceImpl implements QuartzService, InitializingBean {
     private KafkaTemplate kafkaTemplate;
 
     @Autowired
-    private QuartzTaskInformationsService quartzTaskInformationsService;
+    private QuartzTaskInformationsServiceImpl quartzTaskInformationsService;
 
     @Autowired
-    private QuartzTaskErrorsService quartzTaskErrorsService;
+    private QuartzTaskErrorsServiceImpl quartzTaskErrorsService;
 
     @Autowired
-    private QuartzTaskRecordsService quartzTaskRecordsService;
+    private QuartzTaskRecordsServiceImpl quartzTaskRecordsService;
 
     @Autowired
     private SchedulerFactoryBean schedulerBean;
@@ -335,6 +340,5 @@ public class QuartzServiceImpl implements QuartzService, InitializingBean {
     public QuartzTaskErrors detailTaskErrors(String recordId) {
         return quartzTaskErrorsService.detailTaskErrors(recordId);
     }
-
 
 }

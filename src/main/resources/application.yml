@@ -1,3 +1,5 @@
+
+
 # mybatis
 mybatis:
   type-aliases-package: com.quartz.cn.springbootquartzdemo.bean
@@ -9,7 +11,7 @@ mybatis:
 
 spring:
   datasource:
-    url: jdbc:mysql://10.200.20.194:3306/quartz?useUnicode=true&characterEncoding=utf-8
+    url: jdbc:mysql://localhost:3306/quartz?useUnicode=true&characterEncoding=utf-8
     username: root
     password: root
     driver-class-name: com.mysql.jdbc.Driver
@@ -48,5 +50,6 @@ spring:
 #  level:
 #    com.quartz.cn.springbootquartzdemo.dao:
 #      debug
-
+server:
+  port: 8989
 

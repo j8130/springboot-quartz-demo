@@ -3,7 +3,7 @@ package com.quartz.cn.springbootquartzdemo.controller;
 
 import com.quartz.cn.springbootquartzdemo.bean.QuartzTaskErrors;
 import com.quartz.cn.springbootquartzdemo.bean.QuartzTaskInformations;
-import com.quartz.cn.springbootquartzdemo.service.quartz.QuartzService;
+import com.quartz.cn.springbootquartzdemo.service.quartz.impl.QuartzServiceImpl;
 import com.quartz.cn.springbootquartzdemo.util.ResultEnum;
 import com.quartz.cn.springbootquartzdemo.util.ResultUtil;
 import com.quartz.cn.springbootquartzdemo.vo.QuartzTaskRecordsVo;
@@ -34,7 +34,7 @@ public class QuartzController {
     private static final Logger logger = LoggerFactory.getLogger(QuartzController.class);
 
     @Autowired
-    private QuartzService quartzService;
+    private QuartzServiceImpl quartzService;
 
     @RequestMapping(value = "/add/taskpage", method = RequestMethod.GET)
     public String addTaskpage() {
